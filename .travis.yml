@@ -18,10 +18,14 @@ before_script:
   - ROLES=`find -mindepth 1 -maxdepth 1 -type d -not -path '*/\.*' -printf '%f\n'`
   - mkdir -p $COLLECTION_NAMESPACE/$COLLECTION_NAME
   - for r in $ROLES; do cp -Rp "$r" $COLLECTION_NAMESPACE/$COLLECTION_NAME; done
-  - ls $COLLECTION_NAMESPACE/$COLLECTION_NAME
+  - cp galaxy.yml $COLLECTION_NAMESPACE/
+  - cd $COLLECTION_NAMESPACE
 
-# deploy:
-#   provider: script
-#   script: ansible-playbook -i 'localhost,' deploy.yml -e "tag=$TRAVIS_TAG"
-#   'on':
-#     tags: true
+deploy:
+  provider: script
+  script: ansible-playbook -i 'localhost,' ../deploy.yml -e "tag=$TRAVIS_TAG"
+  'on':
+    tags: true
+
+after_script:
+  - ls

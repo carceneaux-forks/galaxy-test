@@ -30,7 +30,7 @@
         ansible-galaxy collection build
         chdir=../
 
-    - name: Publish the collection.
-      command: >
-        ansible-galaxy collection publish ./VeeamHub-veeam-{{ tag }}.tar.gz
-        chdir=../
+    # - name: Publish the collection.
+    #   command: >
+    #     ansible-galaxy collection publish ./VeeamHub-veeam-{{ tag }}.tar.gz
+    #     chdir=../
