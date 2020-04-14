@@ -4,7 +4,7 @@ language: python
 env:
   global:
     - COLLECTION_NAMESPACE: carceneaux
-    - COLLECTION_NAME: galaxy-test
+    - COLLECTION_NAME: test
 
 install:
   # Install ansible
@@ -23,6 +23,4 @@ before_script:
 
 script:
   - ansible-galaxy collection build
-  - ls
-  - echo "$COLLECTION_NAMESPACE-$COLLECTION_NAME-1.0.0.tar.gz"
   - ansible-galaxy collection publish ./$COLLECTION_NAMESPACE-$COLLECTION_NAME-1.0.0.tar.gz --api-key $ANSIBLE_GALAXY_TOKEN

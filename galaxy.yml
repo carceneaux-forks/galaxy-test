@@ -1,6 +1,6 @@
 ---
 namespace: carceneaux
-name: galaxy-test
+name: test
 version: "1.0.0"
 readme: README.md
 authors:
