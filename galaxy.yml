@@ -10,7 +10,4 @@ license: GPL-3.0-only
 license_file: LICENSE
 tags:
   - test
-dependencies: []
 repository: "https://github.com/carceneaux-forks/galaxy-test"
-documentation: ""
-issues: ""
