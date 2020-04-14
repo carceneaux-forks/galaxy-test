@@ -28,7 +28,7 @@
     - name: Build the collection.
       command: >
         ansible-galaxy collection build
-        chdir=../
+        ls
 
     # - name: Publish the collection.
     #   command: >
