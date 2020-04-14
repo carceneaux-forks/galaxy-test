@@ -12,19 +12,16 @@ install:
 
   # Check ansible version
   - ansible --version
-  - ansible-galaxy --version
 
 before_script:
   # Move the collection into the required path to make ansible-test work.
+  - mkdir -p $COLLECTION_NAMESPACE/$COLLECTION_NAME
   - ls
-  - cd ../
-  - ls
-  - mkdir -p ansible_collections/$COLLECTION_NAMESPACE
-  - mv ansible-collection-$COLLECTION_NAME ansible_collections/$COLLECTION_NAMESPACE/$COLLECTION_NAME
-  - cd ansible_collections/$COLLECTION_NAMESPACE/$COLLECTION_NAME
+  - find -mindepth 1 -maxdepth 1 -type d -not -path '*/\.*' -exec cp -Rp {} $COLLECTION_NAMESPACE/$COLLECTION_NAME \;
+  - ls $COLLECTION_NAMESPACE/$COLLECTION_NAME
 
-deploy:
-  provider: script
-  script: ansible-playbook -i 'localhost,' scripts/deploy.yml -e "tag=$TRAVIS_TAG"
-  'on':
-    tags: true
+# deploy:
+#   provider: script
+#   script: ansible-playbook -i 'localhost,' deploy.yml -e "tag=$TRAVIS_TAG"
+#   'on':
+#     tags: true
