@@ -14,9 +14,7 @@ before_script:
   - COLLECTION_NAME=`grep 'name:' galaxy.yml | tail -n1 | awk '{ print $2}' | tr -d \"`
   - VERSION=`grep 'version:' galaxy.yml | tail -n1 | awk '{ print $2}' | tr -d \"`
 
-deploy:
-  provider: script
-  script: bash deploy.sh
-  on:
-    tags: true
-    branch: master
+script:
+  - if [[ $TRAVIS_BRANCH == "master" ]]; then echo "$COLLECTION_NAMESPACE-$COLLECTION_NAME-$VERSION.tar.gz"; fi
+  # - ansible-galaxy collection build
+  # - ansible-galaxy collection publish ./$COLLECTION_NAMESPACE-$COLLECTION_NAME-$VERSION.tar.gz --api-key $ANSIBLE_GALAXY_TOKEN
