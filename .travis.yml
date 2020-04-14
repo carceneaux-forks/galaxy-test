@@ -21,8 +21,8 @@ before_script:
   - cp galaxy.yml $COLLECTION_NAMESPACE/
   - cd $COLLECTION_NAMESPACE
 
-deploy:
-  provider: script
-  script: ansible-playbook -i 'localhost,' ../deploy.yml -e "tag=$TRAVIS_TAG"
-  'on':
-    tags: true
+# deploy:
+#   provider: script
+#   script: ansible-playbook -i 'localhost,' ../deploy.yml -e "tag=$TRAVIS_TAG"
+#   'on':
+#     tags: true
