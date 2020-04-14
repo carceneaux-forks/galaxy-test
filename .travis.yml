@@ -9,19 +9,12 @@ install:
   - ansible --version
 
 before_script:
-  # Move the roles into another folder to eliminate excess files
-  - ROLES=`find -mindepth 1 -maxdepth 1 -type d -not -path '*/\.*' -printf '%f\n'`
-  - mkdir collection
-  - for r in $ROLES; do cp -Rp "$r" collection; done
   # Extracting variables for collection
   - COLLECTION_NAMESPACE=`grep 'namespace:' galaxy.yml | tail -n1 | awk '{ print $2}' | tr -d \"`
   - COLLECTION_NAME=`grep 'name:' galaxy.yml | tail -n1 | awk '{ print $2}' | tr -d \"`
   - VERSION=`grep 'version:' galaxy.yml | tail -n1 | awk '{ print $2}' | tr -d \"`
-  # Copying needed files to collection directory
-  - cp {galaxy.yml,README.md,LICENSE} collection/
-  - cd collection/
 
 script:
   - echo "$COLLECTION_NAMESPACE-$COLLECTION_NAME-$VERSION.tar.gz"
   # - ansible-galaxy collection build
-  # - ansible-galaxy collection publish ./$COLLECTION_NAMESPACE-$COLLECTION_NAME-1.0.0.tar.gz --api-key $ANSIBLE_GALAXY_TOKEN
+  # - ansible-galaxy collection publish ./$COLLECTION_NAMESPACE-$COLLECTION_NAME-$VERSION.tar.gz --api-key $ANSIBLE_GALAXY_TOKEN
