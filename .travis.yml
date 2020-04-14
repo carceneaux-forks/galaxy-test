@@ -1,11 +1,6 @@
 ---
 language: python
 
-env:
-  global:
-    - COLLECTION_NAMESPACE: carceneaux
-    - COLLECTION_NAME: test
-
 install:
   # Install ansible
   - pip install ansible
@@ -18,7 +13,9 @@ before_script:
   - ROLES=`find -mindepth 1 -maxdepth 1 -type d -not -path '*/\.*' -printf '%f\n'`
   - mkdir collection
   - for r in $ROLES; do cp -Rp "$r" collection; done
-  # Extracting version of collection
+  # Extracting variables for collection
+  - COLLECTION_NAMESPACE=`grep 'namespace:' galaxy.yml | tail -n1 | awk '{ print $2}' | tr -d \"`
+  - COLLECTION_NAME=`grep 'name:' galaxy.yml | tail -n1 | awk '{ print $2}' | tr -d \"`
   - VERSION=`grep 'version:' galaxy.yml | tail -n1 | awk '{ print $2}' | tr -d \"`
   # Copying needed files to collection directory
   - cp {galaxy.yml,README.md,LICENSE} collection/
