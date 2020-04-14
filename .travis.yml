@@ -13,6 +13,8 @@ before_script:
   - COLLECTION_NAMESPACE=`grep 'namespace:' galaxy.yml | tail -n1 | awk '{ print $2}' | tr -d \"`
   - COLLECTION_NAME=`grep 'name:' galaxy.yml | tail -n1 | awk '{ print $2}' | tr -d \"`
   - VERSION=`grep 'version:' galaxy.yml | tail -n1 | awk '{ print $2}' | tr -d \"`
+on:
+  branch: test
 
 script:
   - if [[ $TRAVIS_BRANCH == "master" ]]; then echo "$COLLECTION_NAMESPACE-$COLLECTION_NAME-$VERSION.tar.gz"; fi
