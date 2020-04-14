@@ -17,7 +17,7 @@ before_script:
   # Move the collection into the required path to make ansible-test work.
   - ROLES=`find -mindepth 1 -maxdepth 1 -type d -not -path '*/\.*' -printf '%f\n'`
   - mkdir -p $COLLECTION_NAMESPACE/$COLLECTION_NAME
-  - foreach r ( $ROLES ); cp -Rp $n $COLLECTION_NAMESPACE/$COLLECTION_NAME; end
+  - for r in {$ROLES}; do cp -Rp $r $COLLECTION_NAMESPACE/$COLLECTION_NAME; done
   - ls $COLLECTION_NAMESPACE/$COLLECTION_NAME
 
 # deploy:
