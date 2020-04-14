@@ -12,10 +12,13 @@ install:
 
   # Check ansible version
   - ansible --version
+  - ansible-galaxy --version
 
 before_script:
   # Move the collection into the required path to make ansible-test work.
+  - ls
   - cd ../
+  - ls
   - mkdir -p ansible_collections/$COLLECTION_NAMESPACE
   - mv ansible-collection-$COLLECTION_NAME ansible_collections/$COLLECTION_NAMESPACE/$COLLECTION_NAME
   - cd ansible_collections/$COLLECTION_NAMESPACE/$COLLECTION_NAME
