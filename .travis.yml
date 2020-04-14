@@ -26,6 +26,3 @@ deploy:
   script: ansible-playbook -i 'localhost,' ../deploy.yml -e "tag=$TRAVIS_TAG"
   'on':
     tags: true
-
-after_script:
-  - ls
