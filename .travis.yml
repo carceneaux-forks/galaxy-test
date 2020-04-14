@@ -18,8 +18,14 @@ before_script:
   - ROLES=`find -mindepth 1 -maxdepth 1 -type d -not -path '*/\.*' -printf '%f\n'`
   - mkdir -p $COLLECTION_NAMESPACE/$COLLECTION_NAME
   - for r in $ROLES; do cp -Rp "$r" $COLLECTION_NAMESPACE/$COLLECTION_NAME; done
+  - ls
+  - ls "$COLLECTION_NAMESPACE/$COLLECTION_NAME"
   - cp galaxy.yml $COLLECTION_NAMESPACE/
   - cd $COLLECTION_NAMESPACE
+
+deploy:
+  provider: script
+  script: ls "$COLLECTION_NAMESPACE"
 
 # deploy:
 #   provider: script
