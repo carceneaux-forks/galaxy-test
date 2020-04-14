@@ -14,7 +14,7 @@ install:
   - ansible --version
 
 before_script:
-  # Move the collection into the required path to make ansible-test work.
+  # Move the roles into another folder to eliminate excess files
   - ROLES=`find -mindepth 1 -maxdepth 1 -type d -not -path '*/\.*' -printf '%f\n'`
   - mkdir collection
   - for r in $ROLES; do cp -Rp "$r" collection; done
