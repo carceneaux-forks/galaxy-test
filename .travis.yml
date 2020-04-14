@@ -25,4 +25,4 @@ script:
   - ansible-galaxy collection build
   - ls
   - echo "$COLLECTION_NAMESPACE-$COLLECTION_NAME-1.0.0.tar.gz"
-  - ansible-galaxy collection publish ./$COLLECTION_NAMESPACE-$COLLECTION_NAME-1.0.0.tar.gz
+  - ansible-galaxy collection publish ./$COLLECTION_NAMESPACE-$COLLECTION_NAME-1.0.0.tar.gz --api-key $ANSIBLE_GALAXY_TOKEN
