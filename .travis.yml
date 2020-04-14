@@ -1,0 +1,27 @@
+---
+language: python
+
+env:
+  global:
+    - COLLECTION_NAMESPACE: carceneaux
+    - COLLECTION_NAME: test
+
+install:
+  # Install ansible
+  - pip install ansible
+
+  # Check ansible version
+  - ansible --version
+
+before_script:
+  # Move the collection into the required path to make ansible-test work.
+  - cd ../
+  - mkdir -p ansible_collections/$COLLECTION_NAMESPACE
+  - mv ansible-collection-$COLLECTION_NAME ansible_collections/$COLLECTION_NAMESPACE/$COLLECTION_NAME
+  - cd ansible_collections/$COLLECTION_NAMESPACE/$COLLECTION_NAME
+
+deploy:
+  provider: script
+  script: ansible-playbook -i 'localhost,' scripts/deploy.yml -e "tag=$TRAVIS_TAG"
+  'on':
+    tags: true

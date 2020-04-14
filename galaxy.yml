@@ -1,0 +1,16 @@
+---
+namespace: carceneaux
+name: galaxy-test
+version: "1.0.0"
+readme: README.md
+authors:
+  - "Chris Arceneaux (https://www.arsano.ninja/)"
+description: Test Collection
+license: GPL-3.0-only
+license_file: LICENSE
+tags:
+  - test
+dependencies: []
+repository: "https://github.com/carceneaux-forks/galaxy-test"
+documentation:
+issues:
