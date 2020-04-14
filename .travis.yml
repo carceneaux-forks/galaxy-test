@@ -19,6 +19,8 @@ before_script:
   - mkdir collection
   - for r in $ROLES; do cp -Rp "$r" collection; done
   - cp galaxy.yml collection/
+  - cp README.md collection/
+  - cp LICENSE collection/
   - cd collection/
 
 script:
