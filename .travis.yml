@@ -18,11 +18,13 @@ before_script:
   - ROLES=`find -mindepth 1 -maxdepth 1 -type d -not -path '*/\.*' -printf '%f\n'`
   - mkdir collection
   - for r in $ROLES; do cp -Rp "$r" collection; done
-  - cp galaxy.yml collection/
-  - cp README.md collection/
-  - cp LICENSE collection/
+  # Extracting version of collection
+  - VERSION=`grep 'version:' galaxy.yml | tail -n1 | awk '{ print $2}' | tr -d \"`
+  # Copying needed files to collection directory
+  - cp {galaxy.yml,README.md,LICENSE} collection/
   - cd collection/
 
 script:
-  - ansible-galaxy collection build
-  - ansible-galaxy collection publish ./$COLLECTION_NAMESPACE-$COLLECTION_NAME-1.0.0.tar.gz --api-key $ANSIBLE_GALAXY_TOKEN
+  - echo "$COLLECTION_NAMESPACE-$COLLECTION_NAME-$VERSION.tar.gz"
+  # - ansible-galaxy collection build
+  # - ansible-galaxy collection publish ./$COLLECTION_NAMESPACE-$COLLECTION_NAME-1.0.0.tar.gz --api-key $ANSIBLE_GALAXY_TOKEN
