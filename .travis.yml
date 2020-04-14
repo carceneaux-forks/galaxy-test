@@ -21,7 +21,7 @@ before_script:
   - ls
   - ls "$COLLECTION_NAMESPACE/$COLLECTION_NAME"
   - cp galaxy.yml $COLLECTION_NAMESPACE/
-  - cd $COLLECTION_NAMESPACE
+  - cd "$COLLECTION_NAMESPACE"
 
 deploy:
   provider: script
